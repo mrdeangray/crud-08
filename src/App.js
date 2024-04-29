@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import ReadRepos from "./components/ReadRepos";
+import CreateRepo from "./components/CreateRepo";
+import UpdateRepo from "./components/UpdateRedo";
+import DeleteRepo from "./components/DeleteRepo";
+import RepoProvider from "./components/context/RepoProvider";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RepoProvider>
+        <Routes>
+          <Route exact path="/" element={<ReadRepos />} />
+          <Route exact path="/create" element={<CreateRepo />} />
+          <Route exact path="/update/:id" element={<UpdateRepo />} />
+          <Route exact path="/delete/:id" element={<DeleteRepo />} />
+        </Routes>
+      </RepoProvider>
     </div>
   );
 }
